@@ -4,8 +4,8 @@ services:
   yapi-web:
     image: jayfong/yapi:latest
     container_name: yapi-web
-    ports:
-      - 40001:3000
+    expose:
+      - 3000
     environment:
       - YAPI_ADMIN_ACCOUNT=admin@docker.yapi
       - YAPI_ADMIN_PASSWORD=adm1n
@@ -32,7 +32,7 @@ services:
   nginx:
     image: nginx:1.22.0-alpine
     ports:
-      - 80:80"
+      - "80:80"
     volumes:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${NGINX_CONFD_DIR}:/etc/nginx/conf.d/:rw
