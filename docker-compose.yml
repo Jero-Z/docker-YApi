@@ -29,3 +29,14 @@ services:
     expose:
       - 27017
     restart: unless-stopped
+  nginx:
+    image: nginx:1.22.0-alpine
+    ports:
+      - 80:80"
+    volumes:
+      - ${SOURCE_DIR}:/var/www/html/:rw
+      - ${NGINX_CONFD_DIR}:/etc/nginx/conf.d/:rw
+      - ${NGINX_LOG_DIR}:/var/log/nginx/:rw
+    restart: always
+    networks:
+      - default
